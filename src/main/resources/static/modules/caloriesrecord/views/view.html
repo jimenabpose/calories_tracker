@@ -1,0 +1,25 @@
+<table class="table">
+  <tr>
+    <td><h3>Calories record details</h3></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Text</td>
+    <td>{{caloriesRecord.text}}</td>
+  </tr>
+  <tr>
+    <td>Date</td>
+    <td>{{caloriesRecord.date | date : 'yyyy-MM-dd'}}</td>
+  </tr>
+  <tr>
+    <td>Time</td>
+    <td>{{caloriesRecord.time | date : 'HH:mm'}}</td>
+  </tr>
+  <tr>
+    <td>Calories quantity</td>
+    <td>{{caloriesRecord.caloriesQuantity}}</td>
+  </tr>
+</table>
+<div>
+  <a class="btn btn-primary" ng-click="editCaloriesRecord({id:caloriesRecord.id})">Edit</a>
+</div>

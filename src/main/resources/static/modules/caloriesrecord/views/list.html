@@ -1,0 +1,80 @@
+<div>
+	<span><h1>Calories records</h1></span>
+	<span><a class="btn btn-primary" ng-click="addCaloriesRecord()">Add new calories record</a></span>
+</div>
+<span><h3>Filter</h3></span>
+<form class="form-horizontal" role="form" name="form">
+  <div class="form-group" ng-show="canCrudOtherUsersItems()" >
+    <label for="user" class="col-sm-2 control-label">User filter</label>
+    <div class="col-sm-10">
+      <select ng-change="getData()" ng-model="caloriesRecordFilter.user" ng-options="userData.id as userData.description for userData in usersData" class="form-control">
+	    <option value="">All</option>
+	  </select>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="dates" class="col-sm-2 control-label">Date From</label>
+    <div class="col-sm-10">
+      <uib-datepicker ng-model="caloriesRecordFilter.dateFrom" class="well well-sm" datepicker-options="datePickerOptions" ng-change="getData()" style="display: table;"></uib-datepicker>
+      <button type="button" class="btn btn-danger" ng-click="clearDateFrom()">Clear</button>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="dates" class="col-sm-2 control-label">Date To</label>
+    <div class="col-sm-10">
+      <uib-datepicker ng-model="caloriesRecordFilter.dateTo" class="well well-sm-3" datepicker-options="datePickerOptions" ng-change="getData()" style="display: table;"></uib-datepicker>
+      <button type="button" class="btn btn-danger" ng-click="clearDateTo()">Clear</button>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="timeFrom" class="col-sm-2 control-label">Time From</label>
+    <div class="col-sm-10">
+	  <uib-timepicker ng-model="caloriesRecordFilter.timeFrom" ng-change="getData()" hour-step="1" minute-step="1" show-meridian="false" mousewheel="false"></uib-timepicker>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="timeTo" class="col-sm-2 control-label">Time To</label>
+    <div class="col-sm-10">
+      <uib-timepicker ng-model="caloriesRecordFilter.timeTo" ng-change="getData()" hour-step="1" minute-step="1" show-meridian="false" mousewheel="false"></uib-timepicker>
+    </div>
+  </div>
+  <div class="alert alert-danger" ng-show="error != null">
+		There was a problem filtering your results: {{error | translate}}
+	</div>
+</form>
+
+<table class="table itemtable">
+  <tr>
+    <td><h4>Text</h4></td>
+    <td><h4>Date</h4></td>
+    <td><h4>Time</h4></td>
+    <td><h4>Calories quantity</h4></td>
+    <td ng-show="canCrudOtherUsersItems()"><h4>Owner</h4></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr dir-paginate="caloriesRecord in caloriesRecords|itemsPerPage: pagination.itemsPerPage" total-items="pagination.totalItems" current-page="pagination.current">
+    <td>{{caloriesRecord.text}}</td>
+    <td>{{caloriesRecord.date}}</td>
+    <td>{{caloriesRecord.time}}</td>
+    <td>{{caloriesRecord.caloriesQuantity}}</td>
+    <td ng-show="canCrudOtherUsersItems()">{{caloriesRecord.user.username}}</td>
+    <td>
+      <a class="btn btn-primary" ng-click="viewCaloriesRecord({id:caloriesRecord.id})">View</a>
+    </td>
+    <td>
+      <a class="btn btn-primary" ng-click="editCaloriesRecord({id:caloriesRecord.id})">Edit</a>
+    </td>
+    <td>
+      <a class="btn btn-danger" ng-click="deleteCaloriesRecord({id:caloriesRecord.id, text:caloriesRecord.text})">Delete</a>
+    </td>
+  </tr>
+</table>
+
+<dir-pagination-controls
+	max-size="8"
+	direction-links="true"
+	boundary-links="true" 
+	on-page-change="getData(newPageNumber)" >
+</dir-pagination-controls>

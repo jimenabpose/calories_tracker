@@ -1,0 +1,27 @@
+<h1>Calories Tracker</h1>
+<div ng-show="canCrudCaloriesRecords && caloriesPerDay == 0" class="alert alert-info" role="alert">Please initialize your settings to view your status</div>
+<div ng-show="canCrudCaloriesRecords && caloriesPerDay > 0" ng-class="statusIsOk == true ? 'alert alert-success' : 'alert alert-danger'" ng-style="{'color': statusIsOk == true ? 'green' : 'red'}">
+	<div class="panel panel-default">
+	  <div class="panel-heading">Your calories settings per day</div>
+	  <div class="panel-body">{{caloriesPerDay}}</div>
+	</div>
+	
+	<div class="panel panel-default">
+	  <div class="panel-heading">Calories eaten today</div>
+	  <div class="panel-body">{{caloriesForToday}}</div>
+	</div>
+	
+	<div class="panel panel-default">
+	  <div class="panel-heading">Status</div>
+	  <div class="panel-body">
+	  
+	  	<div ng-show="statusIsOk == true">
+			You are doing great for today!
+		</div>
+		<div ng-show="statusIsOk == false">
+			Be careful, you have already eaten the expected calories for today!
+		</div>
+
+	  </div>
+	</div>
+</div>

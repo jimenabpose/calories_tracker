@@ -1,0 +1,37 @@
+<div class="form-group">
+  <label for="year" class="col-sm-2 control-label">Username</label>
+  <div class="col-sm-10">
+    <input type="text" ng-model="user.username" class="form-control" id="user.username" placeholder="Username" name="username" required/>
+  </div>
+</div>
+<div class="form-group">
+  <label for="year" class="col-sm-2 control-label">Password</label>
+  <div class="col-sm-10">
+    <input type="password" ng-model="user.password" class="form-control" id="password" placeholder="Password" name="password" ng-required="passwordIsRequired()"/>
+  </div>
+</div>
+<div class="form-group">
+  <label for="year" class="col-sm-2 control-label">Confirm password</label>
+  <div class="col-sm-10">
+    <input type="password" ng-model="user.passwordConfirmation" class="form-control" id="passwordConfirmation" placeholder="Password confirmation" name="passwordConfirmation" ng-required="passwordIsRequired()"/>
+  </div>
+</div>
+<div ng-show="isAuthenticated()">
+	<div class="form-group">
+	    <label for="user" class="col-sm-2 control-label">Role</label>
+	    <div class="col-sm-10">
+	      <select ng-model="user.rolesList" ng-options="roleData.id as roleData.description for roleData in rolesData" class="form-control" name="role" multiple required></select>
+	    </div>
+	  </div>
+	<div class="form-group">
+	  <label for="director" class="col-sm-2 control-label">Enabled</label>
+	  <div class="col-sm-10">
+	    <input type="checkbox" ng-model="user.enabled" class="form-control" id="enabled" name="enabled"/>
+	  </div>
+	</div>
+</div>
+<div class="form-group">
+  <div class="col-sm-offset-2 col-sm-10">
+    <input type="submit" class="btn btn-primary" value="Save" ng-disabled="userForm.$invalid"/>
+  </div>
+</div>

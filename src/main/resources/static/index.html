@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+<title>Calories tracker</title>
+<base href="/" />
+<link href="css/angular-bootstrap.css" rel="stylesheet">
+<style type="text/css">
+[ng\:cloak], [ng-cloak], .ng-cloak {
+	display: none !important;
+}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body ng-app="app" ng-cloak class="ng-cloak">
+	<div ng-controller="Authentication" class="container">
+		<ul class="nav nav-pills" role="tablist">
+			<li ng-show="isAuthenticated()" ng-class="{active:tab('home')}"><a href="/">Home</a></li>
+			<li ng-show="canCrudOtherUsers()" ng-class="{active:tab('Users')}"><a href="/users">Users</a></li>
+			<li ng-show="canCrudCaloriesRecords()" ng-class="{active:tab('CaloriesRecords')}"><a href="/caloriesRecords">Calories records</a></li>
+			<li ng-show="!isAuthenticated()" ng-class="{active:tab('Authentication')}"><a href="/login">Login</a></li>
+			<li ng-show="!isAuthenticated()" ng-class="{active:tab('AddUser')}"><a href="/user/add">Register</a></li>
+			<li ng-show="isAuthenticated()" class="alert alert-warning pull-right">{{getLoggedUserUsername()}}</li>
+			<li ng-show="isAuthenticated()" class="pull-right"><a href="" ng-click="logout()">Logout</a></li>
+			<li ng-show="canCrudCaloriesRecords()" ng-class="{active:tab('UserSettings')}" class="pull-right"><a href="/settings">Settings</a></li>
+		</ul>
+	</div>
+	
+	<div ng-view class="container"></div>
+	
+	<script src="js/angular-bootstrap.js" type="text/javascript"></script>
+	<script src="modules/authentication/authenticationControllers.js" type="text/javascript"></script>
+	<script src="modules/authentication/authenticationServices.js" type="text/javascript"></script>
+	<script src="modules/home/homeControllers.js" type="text/javascript"></script>
+	<script src="modules/home/homeServices.js" type="text/javascript"></script>
+	<script src="modules/user/userControllers.js" type="text/javascript"></script>
+	<script src="modules/user/userServices.js" type="text/javascript"></script>
+	<script src="modules/caloriesrecord/caloriesRecordControllers.js" type="text/javascript"></script>
+	<script src="modules/caloriesrecord/caloriesRecordServices.js" type="text/javascript"></script>
+	<script src="modules/settings/settingsControllers.js" type="text/javascript"></script>
+	<script src="modules/settings/settingsServices.js" type="text/javascript"></script>
+	<script src="modules/app.js" type="text/javascript"></script>
+</body>
+</html>

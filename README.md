@@ -7,9 +7,9 @@ Java application for the input of calories
 	3. JPA (Hibernate) - Persistance layer
 	4. Spring - Dependency injection, etc.
 	5. Spring Boot - Spring bootstrap
-	6. JUnit - Testing
-	7. AngularJS - Web View
-	8. Tomcat - Servlet engine
+	6. JUnit, Hamcrest - Testing
+	7. Tomcat - Servlet engine
+	8. AngularJS - Web View
 
 # Development
 
@@ -19,11 +19,13 @@ Java application for the input of calories
 ## Console
 	mvn spring-boot:run
 
+
 # Deployment
+Configure the file 'application.properties' and run:
 
 	mvn clean install
 
 # Testing
-To run tests execute
+To execute the tests run:
 
 	mvn clean test

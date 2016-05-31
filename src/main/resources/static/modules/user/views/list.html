@@ -1,0 +1,55 @@
+<div>
+	<span><h1>Users</h1></span>
+	<span><a class="btn btn-primary" ng-click="addUser()">Add new user</a></span>
+</div>
+
+<h3>User filters</h3>
+
+<div class="alert alert-danger" ng-show="error != null">
+	There was a problem: {{error | translate}}
+</div>
+
+<form class="form-horizontal" role="form">
+	<div class="form-group">
+	  <label for="usernameContent" class="col-sm-3 control-label">Username containing</label>
+	  <div class="col-sm-9">
+	    <input type="text" ng-change="getData()" ng-model="userFilter.usernameContent" class="form-control" id="usernameContent" placeholder="Username content" name="usernameContent"/>
+	  </div>
+	</div>
+	<div class="form-group">
+	  <label for="showOnlyEnabledUsers" class="col-sm-3 control-label">Show only enabled users</label>
+	  <div class="col-sm-9">
+	    <input type="checkbox" ng-change="getData()" ng-model="userFilter.showOnlyEnabledUsers" class="form-control" id="showOnlyEnabledUsers" name="showOnlyEnabledUsers"/>
+	  </div>
+	</div>
+</form>
+
+<table class="table itemtable">
+  <tr>
+    <td><h4>Username</h4></td>
+    <td><h4>Enabled</h4></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr dir-paginate="user in users|itemsPerPage: pagination.usersPerPage" total-items="pagination.totalUsers" current-page="pagination.current">
+    <td>{{user.username}}</td>
+    <td>{{user.enabled}}</td>
+    <td>
+      <a class="btn btn-primary" ng-click="viewUser({id:user.id})">View</a>
+    </td>
+    <td>
+      <a class="btn btn-primary" ng-click="editUser({id:user.id})">Edit</a>
+    </td>
+    <td>
+      <a ng-show="user.enabled" class="btn btn-danger" ng-click="deleteUser({id:user.id})">Set as disabled</a>
+    </td>
+  </tr>
+</table>
+
+<dir-pagination-controls
+	max-size="5"
+	direction-links="true"
+	boundary-links="true" 
+	on-page-change="getData(newPageNumber)" >
+</dir-pagination-controls>

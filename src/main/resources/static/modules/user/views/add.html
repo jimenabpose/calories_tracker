@@ -1,0 +1,8 @@
+<h3>Add new user</h3>
+<form class="form-horizontal" role="form" ng-submit="addUser()" name="userForm" novalidate>
+	<div class="alert alert-danger" ng-show="error != null">
+		There was a problem creating the user: {{error | translate}}
+	</div>
+	<div class="alert alert-info" style="display:inline-block"">All fields are required</div>
+	<div ng-include="'modules/user/views/form.html'"></div>
+</form>

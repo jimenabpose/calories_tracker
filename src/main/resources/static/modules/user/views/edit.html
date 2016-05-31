@@ -1,0 +1,9 @@
+<h3>Edit user</h3>
+<form class="form-horizontal" role="form" ng-submit="editUser()" name="userForm">
+	<div class="alert alert-danger" ng-show="error != null">
+		There was a problem editing the user: {{error | translate}}
+	</div>
+	<div class="alert alert-info">Leave password empty if you don't want to modify it.</div>
+	<div class="alert alert-info">All fields are required, except for password.</div>
+	<div ng-include="'modules/user/views/form.html'"></div>
+</form>

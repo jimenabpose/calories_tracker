@@ -1,0 +1,17 @@
+<table class="table">
+  <tr>
+    <td><h3>User details</h3></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Username</td>
+    <td>{{user.username}}</td>
+  </tr>
+  <tr>
+    <td>Enabled</td>
+    <td>{{user.enabled}}</td>
+  </tr>
+</table>
+<div>
+  <a class="btn btn-primary" ng-click="editUser({id:user.id})">Edit</a>
+</div>
