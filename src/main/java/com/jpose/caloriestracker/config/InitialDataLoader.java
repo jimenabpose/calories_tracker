@@ -91,6 +91,14 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
     	caloriesRecord.setTime(dinner);
     	caloriesRecord.setUser(user);
     	caloriesRecordRepository.save(caloriesRecord);
+    	
+    	caloriesRecord = new CaloriesRecord();
+    	caloriesRecord.setDate(date);
+    	caloriesRecord.setText("Salad");
+    	caloriesRecord.setCaloriesQuantity(100L);
+    	caloriesRecord.setTime(dinner);
+    	caloriesRecord.setUser(adminUser);
+    	caloriesRecordRepository.save(caloriesRecord);
     }
  
     @Transactional
